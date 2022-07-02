@@ -31,7 +31,8 @@ void initDHT();
 void initCSS();
 void initSMOKE();
 void initLed();
-double* getTempHumi();
+void getTempHumi(double &temp, double &humidity);
+void readCSS(double &eCO2, double &TVOC);
 int getSMOKE();
 
 // Variables
