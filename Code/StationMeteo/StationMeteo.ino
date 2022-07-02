@@ -17,6 +17,8 @@
 #define greenLed 3
 #define blueLed 4
 
+#define TIME_REFRESH_TEMP_CCS811 60000
+
 // Instances
 DHT_Unified dht(DHTPIN, DHTTYPE);
 Adafruit_CCS811 ccs;
@@ -36,6 +38,9 @@ int getSMOKE();
 uint32_t delayReadDHT;
 unsigned long realTime;
 unsigned long oldRealTime;
+
+unsigned long timeRefreshCCS811;
+unsigned long oldTimeRefreshCCS811;
 
 int smokeThreshold = 800;
 float co2Threshold = 750;
@@ -66,17 +71,20 @@ void loop()
     oldRealTime = realTime;
     double temp, humidity;
     getTempHumi(temp, humidity);
-    if (temp != -1)
+    if (temp != -1 && humidity != -1)
     {
       displayAt(0, 0, "Temp:");
       displayAt(6, 0, String(temp));
       displayAt(11, 0, "C");
-    }
-    if (humidity != -1)
-    {
+      
       displayAt(0, 1, "Humi:");
       displayAt(6, 1, String(humidity));
       displayAt(11, 1, "%");
+
+      if (timeRefreshCCS811 - oldTimeRefreshCCS811 > TIME_REFRESH_TEMP_CCS811)
+      {
+        ccs.setEnvironmentalData(humidity, temp);
+      }
     }
   }
 
