@@ -1,7 +1,7 @@
 # StationMeteoInterieur
 
-Projet d'une station méteo permettant de surveiller la température, l'humidité, le taux de CO2 ainsi que le total de particules nocives TVOC. Il permet également de détecter les fumées.
-Toutes ces informations sont indiquées sur un écran LCD et des leds informent l'utilisateur d'un taux trop élévés de particules, de CO2 ou de fumée.
+<p align="justify">&ensp;&ensp;Projet d'une station méteo permettant de surveiller la température, l'humidité, le taux de CO2 ainsi que le total de particules nocives TVOC. Il permet également de détecter les fumées.
+Toutes ces informations sont indiquées sur un écran LCD et des leds informent l'utilisateur d'un taux trop élévés de particules, de CO2 ou de fumée.</p>
 
 ### Matériel necéssaire:
 
