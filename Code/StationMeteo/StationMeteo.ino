@@ -27,6 +27,7 @@ LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars
 
 // Prototypes
 void displayAt(int col, int row, String text);
+void resetLine(int row);
 void initDHT();
 void initCSS();
 void initSMOKE();
@@ -74,6 +75,8 @@ void loop()
     getTempHumi(temp, humidity);
     if (temp != -1 && humidity != -1)
     {
+      resetLine(0);
+      resetLine(1);
       displayAt(0, 0, "Temp:");
       displayAt(6, 0, String(temp));
       displayAt(11, 0, "C");
@@ -96,6 +99,8 @@ void loop()
     readCSS(eCO2, TVOC);
     if (eCO2 != -1)
     {
+      resetLine(2);
+      resetLine(3);
       displayAt(0, 2, "eCO2:");
       displayAt(5, 2, String(eCO2));
       displayAt(0, 3, "TVOC:");
@@ -268,6 +273,14 @@ int getSMOKE()
     Serial.println(smoke);
   #endif
   return smoke;
+}
+
+void resetLine(int row)
+{
+  for (int i = 0; i < 20; ++i)
+  {
+    displayAt(i, row, " ");
+  }
 }
 
 void displayAt(int col, int row, String text)
